@@ -82,7 +82,7 @@ function OwnerGraph({ ownerPoints }) {
             // }}
             tickFormatter={(str) => {
               try {
-                const date = parse(str, "MM/dd/yyyy", new Date());
+                const date = parse(str, "dd/MM/yyyy", new Date());
                 if (isValid(date)) {
                   return format(date, "MMM, d");
                 } else {
