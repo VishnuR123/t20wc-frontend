@@ -1,6 +1,6 @@
 import React from "react";
 
-import { parse, parseISO, format } from "date-fns";
+import { parse, parseISO, format, isValid } from "date-fns";
 
 import {
   ResponsiveContainer,
@@ -71,28 +71,42 @@ function OwnerGraph({ ownerPoints }) {
             dataKey="date"
             axisLine={false}
             tickLine={false}
-            style={{ fontSize:"12px"}}
+            style={{ fontSize: "12px" }}
+            // tickFormatter={(str) => {
+            //   const date = parse(str, "MM/dd/yyyy", new Date());
+            //   return format(date, "MMM, d");
+            //   if(date.getDate() % 3 === 0){
+            //     return format(date, "MMM, d")
+            //     }
+            //    return ("")
+            // }}
             tickFormatter={(str) => {
-              const date = parse(str, "MM/dd/yyyy", new Date());
-              return format(date, "MMM, d");
-              // if(date.getDate() % 3 === 0){
-                //   return format(date, "MMM, d")
-                //   }
-                //  return ("")
-                }}
-                />
-          <YAxis 
-            style={{ fontSize:"12px"}}
-            axisLine={false} 
-            tickLine={false} 
-            tickCount={4} 
-            />
+              try {
+                const date = parse(str, "MM/dd/yyyy", new Date());
+                if (isValid(date)) {
+                  return format(date, "MMM, d");
+                } else {
+                  console.error("Invalid date value:", str);
+                  return "";
+                }
+              } catch (error) {
+                console.error("Error parsing date:", str, error);
+                return "";
+              }
+            }}
+          />
+          <YAxis
+            style={{ fontSize: "12px" }}
+            axisLine={false}
+            tickLine={false}
+            tickCount={4}
+          />
           <Tooltip />
-          <Legend 
-          height={20}
-          wrapperStyle={{
-            margin:'0 0 10px 0'
-          }}
+          <Legend
+            height={20}
+            wrapperStyle={{
+              margin: "0 0 10px 0",
+            }}
           />
           {owners.map((owner) => (
             <Line
