@@ -87,7 +87,7 @@ function OwnerGraph({ ownerPoints }) {
                   return format(date, "MMM, d");
                 } else {
                   console.error("Invalid date value:", str);
-                  return "";
+                  return str;
                 }
               } catch (error) {
                 console.error("Error parsing date:", str, error);
