@@ -12,8 +12,7 @@ import CVCPage from "./components/CVCPage/CVCPage";
 import PastResults from "./components/PastResults/PastResults";
 import Predictions from "./components/PredictionPage/Predictions";
 
-// export const URL = 'https://t20wc-api.onrender.com';
-export const URL = process.env.REACT_APP_SERVER_URL;
+export const URL = import.meta.env.VITE_APP_SERVER_URL;
 // export const URL = "http://localhost:5000";
 
 function App() {
