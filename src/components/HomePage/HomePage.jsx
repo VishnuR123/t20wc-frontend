@@ -22,43 +22,43 @@ function HomePage({ players, ownerPoints }) {
       // Perform your calculations here
       const mostRecent = ownerPoints[0];
       // Define the points to subtract
-      const pointsToSubtract = {
-        Shriman: 106.89,
-        Sakthi: 105.01,
-        Shashwat: 247.99,
-        Sanjay: 90.21,
-      };
+      // const pointsToSubtract = {
+      //   Shriman: 106.89,
+      //   Sakthi: 105.01,
+      //   Shashwat: 247.99,
+      //   Sanjay: 90.21,
+      // };
 
       // Adjust the points before sorting
-      const adjustedPoints = Object.entries(mostRecent.points)
-        .filter(([key, value]) => key !== "date" && key !== "matchNumber")
-        .map(([owner, points]) => {
-          const adjustedPoints = pointsToSubtract[owner]
-            ? points - pointsToSubtract[owner]
-            : points;
-          return [owner, adjustedPoints];
-        });
+      // const adjustedPoints = Object.entries(mostRecent.points)
+      //   .filter(([key, value]) => key !== "date" && key !== "matchNumber")
+      //   .map(([owner, points]) => {
+      //     const adjustedPoints = pointsToSubtract[owner]
+      //       ? points - pointsToSubtract[owner]
+      //       : points;
+      //     return [owner, adjustedPoints];
+      //   });
         // Sort the points
-      const sortedPoints = adjustedPoints.sort(([, a], [, b]) => b - a);
+      // const sortedPoints = adjustedPoints.sort(([, a], [, b]) => b - a);
 
-      // const sortedPoints = Object.entries(mostRecent.points)
-      //   .filter(([key, value]) => key !== "date")
-      //   .filter(([key, value]) => key !== "matchNumber")
-      //   .sort(([, a], [, b]) => b - a);
+      const sortedPoints = Object.entries(mostRecent.points)
+        .filter(([key, value]) => key !== "date")
+        .filter(([key, value]) => key !== "matchNumber")
+        .sort(([, a], [, b]) => b - a);
       // setPointsTable(sortedPoints);
       // Calculate differences
-      // const pointsWithDifferences = sortedPoints.map(
-      //   ([owner, points], index, arr) => {
-      //     const prevPoints = arr[index - 1] ? arr[index - 1][1] : null;
-      //     const difference = prevPoints !== null ? points - prevPoints : null;
-      //     return { owner, points, difference };
-      //   }
-      // );
+      const pointsWithDifferences = sortedPoints.map(
+        ([owner, points], index, arr) => {
+          const prevPoints = arr[index - 1] ? arr[index - 1][1] : null;
+          const difference = prevPoints !== null ? points - prevPoints : null;
+          return { owner, points, difference };
+        }
+      );
        // Calculate the differences
-       const pointsWithDifferences = sortedPoints.map(([owner, points], index, array) => {
-        const difference = index > 0 ? points - array[index - 1][1] : null;
-        return { owner, points, difference };
-      });
+      //  const pointsWithDifferences = sortedPoints.map(([owner, points], index, array) => {
+      //   const difference = index > 0 ? points - array[index - 1][1] : null;
+      //   return { owner, points, difference };
+      // });
       setPointsTable(pointsWithDifferences);
       //Matches Left Component Calculation
       const matchNumber = mostRecent.matchNumber;
