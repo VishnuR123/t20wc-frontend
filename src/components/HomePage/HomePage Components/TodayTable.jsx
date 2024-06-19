@@ -21,7 +21,7 @@ function TodayTable({todayPoints, onOwnerHover}) {
               key={owner}
               onMouseEnter={()=> onOwnerHover(owner)}
               onMouseLeave={()=> onOwnerHover(null)}>
-                <span>{owner}</span> <span>{points}</span> 
+                <span>{owner}</span> <span>{points.toFixed(2)}</span> 
               </li>
             ))}
           </ul>):(
