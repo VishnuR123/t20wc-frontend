@@ -80,20 +80,20 @@ function OwnerGraph({ ownerPoints }) {
             //     }
             //    return ("")
             // }}
-            tickFormatter={(str) => {
-              try {
-                const date = parse(str, "dd/MM/yyyy", new Date());
-                if (isValid(date)) {
-                  return format(date, "MMM, d");
-                } else {
-                  console.error("Invalid date value:", str);
-                  return str;
-                }
-              } catch (error) {
-                console.error("Error parsing date:", str, error);
-                return "";
-              }
-            }}
+            // tickFormatter={(str) => {
+            //   try {
+            //     const date = parse(str, "dd/MM/yyyy", new Date());
+            //     if (isValid(date)) {
+            //       return format(date, "MMM, d");
+            //     } else {
+            //       console.error("Invalid date value:", str);
+            //       return str;
+            //     }
+            //   } catch (error) {
+            //     console.error("Error parsing date:", str, error);
+            //     return "";
+            //   }
+            // }}
           />
           <YAxis
             style={{ fontSize: "12px" }}
