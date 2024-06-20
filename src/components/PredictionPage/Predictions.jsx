@@ -26,6 +26,7 @@ function Predictions() {
             <td>
               <img src='../../src/assets/tukesh.jpeg' alt="" />
               <p>Warner than player of the tournaments</p>
+              <p>rinku ilama india wont win icc tournament</p>
             </td>
 
           </tr>
