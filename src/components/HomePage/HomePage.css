@@ -26,7 +26,7 @@
   font-size: medium;
   display: grid;
   grid-template-areas:"e f";
-  grid-template-columns: 5fr 4fr;
+  grid-template-columns: 5fr 3fr;
   gap: 30px;
   padding-left:30px ;
   padding-right:30px ;
