@@ -16,10 +16,17 @@ function OwnerGraph({ ownerPoints }) {
   // console.log('ownerPoints:', ownerPoints);
   // Reverse the order of ownerPoints documents
   const reversedOwnerPoints = [...ownerPoints].reverse();
+  const latestOwnerPoints = reversedOwnerPoints.slice(-10);
 
   // Transform ownerPoints data
-  const transformedData = reversedOwnerPoints.map((doc) => {
-    const date = new Date(doc.date).toLocaleDateString();
+  const transformedData = latestOwnerPoints.map((doc) => {
+    const date = new Date(doc.date).toLocaleDateString('en-US', {
+      // weekday: 'long',
+      // year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    // .toLocaleDateString();
     const pointsData = { date };
 
     // Use Object.entries to iterate over the points object
@@ -35,24 +42,30 @@ function OwnerGraph({ ownerPoints }) {
     new Set(ownerPoints.flatMap((doc) => Object.keys(doc.points)))
   );
   const ownerColors = {
-    Sakthi: "#33A8C7",
-    Vishnu: "#52E3E1",
-    Yukesh: "#A0E426",
+    // Sakthi: "#33A8C7",
+    Saran: "#009200",
+    Sathish: "#52E3E1",
+    Sanjay: "#A0E426",
     Subu: "#FDF148",
-    Sathish: "#FFAB00",
-    Shashwat: "#F77976",
-    Sanjay: "#F050AE",
-    Saran: "#D883FF",
+    Vishnu: "#FFAB00",
+    // Shashwat: "#F77976",
+    Sakthi: "#eb413e",
+    Yukesh: "#F050AE",
+    Shashwat: "#D883FF",
+    // Saran: "charcoal",
     Shriman: "#9336FD",
   };
 
+  
+  
+  
   return (
-    <div>
+    <>
       <h3>Points Progression</h3>
       <ResponsiveContainer
         width="100%"
         // height="100%"
-        height={400}
+        height={500}
       >
         <LineChart
           // width={500}
@@ -72,34 +85,15 @@ function OwnerGraph({ ownerPoints }) {
             axisLine={false}
             tickLine={false}
             style={{ fontSize: "12px" }}
-            // tickFormatter={(str) => {
-            //   const date = parse(str, "MM/dd/yyyy", new Date());
-            //   return format(date, "MMM, d");
-            //   if(date.getDate() % 3 === 0){
-            //     return format(date, "MMM, d")
-            //     }
-            //    return ("")
-            // }}
-            // tickFormatter={(str) => {
-            //   try {
-            //     const date = parse(str, "dd/MM/yyyy", new Date());
-            //     if (isValid(date)) {
-            //       return format(date, "MMM, d");
-            //     } else {
-            //       console.error("Invalid date value:", str);
-            //       return str;
-            //     }
-            //   } catch (error) {
-            //     console.error("Error parsing date:", str, error);
-            //     return "";
-            //   }
-            // }}
           />
           <YAxis
             style={{ fontSize: "12px" }}
             axisLine={false}
             tickLine={false}
-            tickCount={4}
+            tickCount={5}
+            domain={['dataMin', 'dataMax']}  // Set the domain of the axis
+            //  unit=" pts"
+             allowDecimals={false}
           />
           <Tooltip />
           <Legend
@@ -114,13 +108,14 @@ function OwnerGraph({ ownerPoints }) {
               type="monotone"
               dataKey={owner}
               stroke={ownerColors[owner]}
+              // strokeWidth={1.5} 
               // activeDot={{ r: 8 }}
               // activeDot={<CustomActiveDot />}
             />
           ))}
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 }
 

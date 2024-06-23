@@ -26,7 +26,7 @@
   font-size: medium;
   display: grid;
   grid-template-areas:"e f";
-  grid-template-columns: 6fr 3fr;
+  grid-template-columns: 5fr 4fr;
   gap: 30px;
   padding-left:30px ;
   padding-right:30px ;
@@ -175,6 +175,9 @@ margin: 10px 0;
 .graph-1{
   height: fit-content;
   padding: 10px;
+  /* background-color: #eb413e; */
+  /* background-color: #10044a; */
+  /* color: #fff; */
   /* display: flex;
   flex-direction: column;
   align-items: center;
